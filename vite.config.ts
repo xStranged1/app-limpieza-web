@@ -11,5 +11,5 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: 'https://xStranged1.github.io/app-limpieza',
+  base: 'https://xStranged1.github.io/app-limpieza-web',
 })
