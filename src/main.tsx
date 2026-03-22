@@ -3,10 +3,16 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.tsx'
+const redirect = sessionStorage.redirect;
+delete sessionStorage.redirect;
+
+if (redirect) {
+  window.history.replaceState(null, "", redirect);
+}
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/app-limpieza-web">
       <App />
     </BrowserRouter>
   </StrictMode>,
