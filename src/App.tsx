@@ -5,8 +5,8 @@ import PrivacyPolicy from './app/privacy'
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/privacidad/" element={<PrivacyPolicy />} />
+      <Route path="/app-limpieza-web/" element={<Home />} />
+      <Route path="/app-limpieza-web/privacidad/" element={<PrivacyPolicy />} />
     </Routes>
   )
 }
