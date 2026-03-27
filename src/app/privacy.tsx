@@ -5,7 +5,7 @@ export default function PrivacyPolicy() {
             <div className="border-b bg-card">
                 <div className="container mx-auto px-4 py-8">
                     <h1 className="text-3xl font-bold text-foreground">Política de Privacidad</h1>
-                    <p className="text-muted-foreground mt-2">ToDoClean - Última actualización: Marzo 2026</p>
+                    <p className="text-muted-foreground mt-2">LimpiezaON - Última actualización: Marzo 2026</p>
                 </div>
             </div>
 
@@ -15,7 +15,7 @@ export default function PrivacyPolicy() {
                     {/* Intro */}
                     <section className="prose prose-invert max-w-none">
                         <p className="text-foreground text-lg leading-relaxed">
-                            ToDoClean se compromete a proteger tu privacidad. Esta Política de Privacidad explica cómo
+                            LimpiezaON se compromete a proteger tu privacidad. Esta Política de Privacidad explica cómo
                             recopilamos, usamos y protegemos tu información personal cuando utilizas nuestra aplicación.
                         </p>
                     </section>
@@ -207,7 +207,7 @@ export default function PrivacyPolicy() {
                             <h2 className="text-2xl font-bold text-foreground">7. Menores de Edad</h2>
                         </div>
                         <div className="bg-card rounded-lg p-6 border border-border space-y-3 text-muted-foreground">
-                            <p>ToDoClean no está destinado a menores de 13 años. No recopilamos información de menores de edad de forma intencional.</p>
+                            <p>LimpiezaON no está destinado a menores de 13 años. No recopilamos información de menores de edad de forma intencional.</p>
                             <p>Si descubrimos que hemos recopilado información de un menor, tomaremos medidas para eliminarla inmediatamente.</p>
                             <p>Si eres padre/tutor de un menor y crees que ha compartido información con nosotros, por favor contacta de inmediato.</p>
                         </div>
@@ -219,7 +219,7 @@ export default function PrivacyPolicy() {
                             <h2 className="text-2xl font-bold text-foreground">8. Cambios a esta Política</h2>
                         </div>
                         <div className="bg-card rounded-lg p-6 border border-border text-muted-foreground">
-                            <p>Podemos actualizar esta Política de Privacidad ocasionalmente. Te notificaremos de cambios significativos a través de un aviso en la aplicación. Tu uso continuado de ToDoClean después de cambios significa que aceptas la política actualizada.</p>
+                            <p>Podemos actualizar esta Política de Privacidad ocasionalmente. Te notificaremos de cambios significativos a través de un aviso en la aplicación. Tu uso continuado de LimpiezaON después de cambios significa que aceptas la política actualizada.</p>
                         </div>
                     </section>
 
@@ -246,7 +246,7 @@ export default function PrivacyPolicy() {
                     {/* Footer */}
                     <div className="border-t border-border pt-8 mt-12">
                         <p className="text-center text-muted-foreground text-sm">
-                            <strong>ToDoClean</strong> - Organiza tu hogar, simplifica tu vida.
+                            <strong>LimpiezaON</strong> - Organiza tu hogar, simplifica tu vida.
                         </p>
                     </div>
                 </div>
