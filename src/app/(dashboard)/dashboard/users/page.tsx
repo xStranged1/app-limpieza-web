@@ -1,15 +1,15 @@
 "use client"
 import { useState, useCallback, useEffect } from "react"
-import { useRouter } from "next/navigation"
 import { useAuthStore } from "@/stores/authStore"
 import { listUsersForHouse, setUserInHome } from "@/services/users"
 import { getAssignmentsForHouse } from "@/services/assignments"
 import { listSectors } from "@/services/sectors"
-import { Badge } from "@/components/ui/index"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 import { RefreshCw, Home, LogOut, Crown } from "lucide-react"
 import type { Assignment } from "@/services/types"
+import { useNavigate } from "react-router-dom"
+import { Badge } from "@/components/ui/badge"
 
 type EnrichedUser = { id: string; uid: string; displayName: string; inHome: boolean; role: string; canControl: boolean; sectors: string[]; state: "active" | "completed" | "finished" | "none" }
 
@@ -30,7 +30,7 @@ const STATE_CONFIG = {
 }
 
 export default function UsersPage() {
-  const router = useRouter()
+  const navigate = useNavigate()
   const activeHouseId = useAuthStore(s => s.activeHouseId)
   const currentUid = useAuthStore(s => s.user?.uid)
   const role = useAuthStore(s => s.activeHouseRole)
@@ -90,7 +90,7 @@ export default function UsersPage() {
                   {users.map(u => {
                     const cfg = STATE_CONFIG[u.state]
                     return (
-                      <div key={u.id} className="rounded-lg border bg-card p-4 space-y-3 hover:shadow-sm transition-shadow cursor-pointer" onClick={() => router.push(`/dashboard?userId=${u.uid}`)}>
+                      <div key={u.id} className="rounded-lg border bg-card p-4 space-y-3 hover:shadow-sm transition-shadow cursor-pointer" onClick={() => navigate(`/dashboard?userId=${u.uid}`)}>
                         <div className="flex items-start justify-between gap-2">
                           <div className="flex items-center gap-2 min-w-0">
                             {u.canControl && <Crown className="h-3.5 w-3.5 text-yellow-500 shrink-0" />}

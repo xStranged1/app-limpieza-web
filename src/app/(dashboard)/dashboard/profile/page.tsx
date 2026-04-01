@@ -1,7 +1,6 @@
 "use client"
 import { useState, useEffect } from "react"
 import { useAuthStore } from "@/stores/authStore"
-import { auth } from "@/lib/firebase"
 import { updateProfile, deleteUser } from "firebase/auth"
 import { setDoc, serverTimestamp, deleteDoc } from "firebase/firestore"
 import { refs } from "@/services/refs"
@@ -10,16 +9,16 @@ import { listHousesForUser } from "@/services/houses"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/index"
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/index"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Avatar, AvatarFallback } from "@/components/ui/index"
 import { toast } from "sonner"
-import { useRouter } from "next/navigation"
 import { signOut } from "firebase/auth"
+import { useNavigate } from "react-router-dom"
+import { auth } from "@/const/config"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog"
 
 export default function ProfilePage() {
-  const router = useRouter()
+  const navigation = useNavigate()
   const user = useAuthStore(s => s.user)
   const myUser = useAuthStore(s => s.myUser)
   const activeHouseId = useAuthStore(s => s.activeHouseId)
@@ -60,7 +59,7 @@ export default function ProfilePage() {
       await deleteDoc(refs.user(user.uid))
       await deleteUser(auth.currentUser)
       await signOut(auth)
-      router.replace("/login")
+      navigation("/login")
     } catch { toast.error("Error al eliminar cuenta") } finally { setDeleting(false); setShowDeleteAlert(false) }
   }
 

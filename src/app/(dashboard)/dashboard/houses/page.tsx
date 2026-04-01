@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/index"
 import { createHouse } from "@/services/houses"
 import { joinHouseByCode } from "@/services/users"
 import { toast } from "sonner"
 import { Home, Plus, Copy, Check } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
 
 export default function HousesPage() {
   const user = useAuthStore(s => s.user)

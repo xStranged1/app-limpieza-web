@@ -3,18 +3,20 @@ import { useState, useEffect, useCallback, useMemo } from "react"
 import { useAuthStore } from "@/stores/authStore"
 import { useTaskStore } from "@/stores/taskStore"
 import { getCurrentWeekAssignmentsForUser, updateTaskStatus, deleteAssignmentsForUser } from "@/services/assignments"
-import { listUsersForHouse } from "@/services/users"
+import { getHouseUser, listUsersForHouse, upsertGlobalUserProfile } from "@/services/users"
 import { getSectorsForHouse } from "@/services/sectors"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 import { RefreshCw, CheckCheck, ShieldCheck, Trash2, Info } from "lucide-react"
-import type { TaskStatus } from "@/services/types"
+import type { HouseRole, TaskStatus } from "@/services/types"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Separator } from "@radix-ui/react-select"
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog"
+import { refs } from "@/services/refs"
+import { serverTimestamp, setDoc } from "firebase/firestore"
 
 type TaskRow = { assignmentId: string; taskId: string; name: string; sectorId: string; sectorName?: string; status: "pending" | "completed" | "verified" }
 
@@ -117,6 +119,28 @@ export default function DashboardPage() {
 
   const selectedUserName = houseUsers.find(u => u.uid === selectedUserId)?.displayName ?? "Usuario"
 
+  // async function addUserToHouse(params: { houseId: string; uid: string; displayName: string; role?: HouseRole }) {
+  //   const role: HouseRole = params.role ?? "member"
+  //   const houseUser = { uid: params.uid, displayName: params.displayName.trim() || "Usuario", role, inHome: true, canControl: role !== "member", createdAt: serverTimestamp(), updatedAt: serverTimestamp() }
+  //   const membership = { houseId: params.houseId, role, createdAt: serverTimestamp(), updatedAt: serverTimestamp() }
+  //   await Promise.all([
+  //     setDoc(refs.houseUser(params.houseId, params.uid), houseUser, { merge: true }),
+  //     setDoc(refs.membership(params.uid, params.houseId), membership, { merge: true }),
+  //   ])
+  // }
+
+  // const users = [
+  // { uid: "0fcWmgVobGWx7v84X15Ajp3SuDb2", displayName: "Agus", email: "agusaristegui2000@gmail.com" },
+  // { uid: "1Gyxg3GkHZeY6wGZBfZCSCQKkpx1", displayName: "Anto", email: "anto_gronda@live.com" },
+  // { uid: "5ZVeF3aabBNrBf6pMrZ26nMXw0F3", displayName: "Micaela", email: "micaaristeg@gmail.com" },
+  // { uid: "B1q2u3ZDguZkVGyNeNbqGZVsp512", displayName: "Gonzalo", email: "gnzaaspla@hotmail.com" },
+  // { uid: "XgH0TZMyrRScb6TI1yOXibEcW1i2", displayName: "Juan Atillio", email: "juanchilidog@gmail.com" },
+  // { uid: "cfS6wYuJfIQhSF8LtrgIPyNhKUy2", displayName: "Nicole", email: "lareginanicole@gmail.com" },
+  // { uid: "fGQcT8ErxwcsaRnLh1s6FqIffZz2", displayName: "Sofi", email: "sofiarooney13@gmail.com" },
+  //   { uid: "UDUaYCyuVJYCTP7Y21DJ7ylD8aO2", displayName: "Fede Valle", email: "fede.vall4@gmail.com" },
+
+  // ]
+
   return (
     <TooltipProvider>
       <div className="p-6 max-w-4xl mx-auto space-y-6">
@@ -187,8 +211,52 @@ export default function DashboardPage() {
                 </div>
               </div>
             ))}
+
           </div>
         )}
+        {/* <Button size="sm" variant="secondary" onClick={async () => {
+          const users = await listUsersForHouse(activeHouseId!)
+          console.log(users)
+        }}>
+          Ver usuarios de la casa
+        </Button>
+        <Button size="sm" variant="secondary" onClick={async () => {
+          const users = await listOldUsersForHouse()
+          console.log(users)
+        }}>
+          Ver usuarios viejos
+        </Button>
+
+        <Button
+          size="sm"
+          variant="secondary"
+          onClick={async () => {
+            for (const user of users) {
+              try {
+                await upsertGlobalUserProfile({
+                  uid: user.uid,
+                  email: user.email,
+                  displayName: user.displayName,
+                  photoURL: null,
+                } as any)
+
+                await addUserToHouse({
+                  houseId: "SiaxIKAemMJFXtix7w9a",
+                  uid: user.uid,
+                  displayName: user.displayName,
+                  role: "member",
+                })
+
+                console.log(`✅ Migrado: ${user.displayName}`)
+              } catch (error) {
+                console.error(`❌ Error migrando ${user.displayName}:`, error)
+              }
+            }
+          }}
+        >
+          migrar usuarios viejos a users/uid y a houses/houseId/users
+        </Button> */}
+
       </div>
 
       <AlertDialog open={showDeleteAlert} onOpenChange={setShowDeleteAlert}>

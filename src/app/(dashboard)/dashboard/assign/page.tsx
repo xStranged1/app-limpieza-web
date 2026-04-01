@@ -8,11 +8,11 @@ import { assignTasksToUser, getCurrentWeekPeriod } from "@/services/assignments"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Checkbox } from "@/components/ui/index"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/index"
 import { toast } from "sonner"
 import { CheckSquare, Square } from "lucide-react"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Badge } from "@/components/ui/badge"
 
 export default function AssignPage() {
   const activeHouseId = useAuthStore(s => s.activeHouseId)
