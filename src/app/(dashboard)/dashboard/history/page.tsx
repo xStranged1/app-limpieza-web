@@ -4,8 +4,8 @@ import { useAuthStore } from "@/stores/authStore"
 import { getWeeklyHistory } from "@/services/assignments"
 import { listUsersForHouse } from "@/services/users"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/index"
 import { CheckCircle2, Clock, ShieldCheck } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
 
 function ProgressBar({ value, className }: { value: number; className?: string }) {
   return (

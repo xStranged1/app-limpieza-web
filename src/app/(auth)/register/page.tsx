@@ -1,7 +1,5 @@
 "use client"
 import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
 import { useAuthStore } from "@/stores/authStore"
 import { createUserAccount, joinHouseByCode } from "@/services/users"
 import { createHouse } from "@/services/houses"
@@ -11,9 +9,10 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { toast } from "sonner"
 import { Home } from "lucide-react"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function RegisterPage() {
-  const router = useRouter()
+  const navigate = useNavigate()
   const user = useAuthStore(s => s.user)
   const refreshHouses = useAuthStore(s => s.refreshHouses)
   const pendingJoinCode = useAuthStore(s => s.pendingJoinCode)
@@ -25,7 +24,7 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
 
-  useEffect(() => { if (user) router.replace("/dashboard") }, [user, router])
+  useEffect(() => { if (user) navigate("/dashboard") }, [user])
 
   const onRegister = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -39,7 +38,7 @@ export default function RegisterPage() {
         await createHouse({ name: houseName.trim() || "Mi casa", ownerUid: uid, ownerDisplayName: displayName.trim() || "Owner" })
       }
       await refreshHouses()
-      router.replace("/dashboard")
+      navigate("/dashboard")
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Error al registrarse"
       toast.error(msg)
@@ -86,7 +85,7 @@ export default function RegisterPage() {
           </form>
           <div className="mt-4 text-center text-sm">
             <span className="text-muted-foreground">¿Ya tenés cuenta? </span>
-            <Link href="/login" className="text-primary hover:underline font-medium">Iniciar sesión</Link>
+            <Link to="/login" className="text-primary hover:underline font-medium">Iniciar sesión</Link>
           </div>
         </CardContent>
       </Card>

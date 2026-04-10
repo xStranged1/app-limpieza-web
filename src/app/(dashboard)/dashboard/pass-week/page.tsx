@@ -8,12 +8,9 @@ import { listSectors } from "@/services/sectors"
 import { getAssignmentsForHouse, assignTasksToUser, getCurrentWeekPeriod } from "@/services/assignments"
 import { listTasksBySector } from "@/services/tasks"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/index"
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/index"
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog"
 import { toast } from "sonner"
 import { ArrowUp, Save, CalendarRange } from "lucide-react"
-import type { Assignment } from "@/services/types"
 import { Link } from "react-router-dom";
 
 type Slot = string | string[]
@@ -152,7 +149,7 @@ export default function PassWeekPage() {
       <CalendarRange className="mx-auto h-12 w-12 text-muted-foreground" />
       <h2 className="text-lg font-semibold">Sin configuración de sectores</h2>
       <p className="text-muted-foreground text-sm">Configurá la prioridad de sectores antes de pasar de semana.</p>
-      <Button asChild><Link href="/dashboard/sector-priority">Ir a Prioridad de sectores</Link></Button>
+      <Button asChild><Link to="/dashboard/sector-priority">Ir a Prioridad de sectores</Link></Button>
     </div>
   )
   if (loadState === "error") return <div className="p-6 text-center text-destructive">Error al cargar los datos.</div>

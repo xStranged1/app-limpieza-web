@@ -5,12 +5,12 @@ import { listSectors } from "@/services/sectors"
 import { db } from "@/const/config";
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/index"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { toast } from "sonner"
 import { Plus, Trash2, ArrowUp, ArrowDown, Pencil, X, Check } from "lucide-react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/index"
-import { Checkbox } from "@/components/ui/index"
+import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Checkbox } from "@/components/ui/checkbox";
 
 type Slot = string | string[]
 type PriorityConfig = Record<number, Slot[]>

@@ -1,13 +1,12 @@
 "use client"
 import { useAuthStore } from "@/stores/authStore"
 import { useEffect, useState } from "react"
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ClipboardList, CalendarRange, Star, Users, Copy, Check } from "lucide-react"
 import { toast } from "sonner"
 import { Badge } from "@/components/ui/badge"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function AdminPage() {
   const role = useAuthStore(s => s.activeHouseRole)
@@ -50,7 +49,7 @@ export default function AdminPage() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         {adminActions.map(action => (
-          <Link key={action.href} href={action.href}>
+          <Link key={action.href} to={action.href}>
             <Card className="h-full hover:shadow-md transition-shadow cursor-pointer hover:border-primary/50">
               <CardHeader className="pb-2">
                 <div className="flex items-center gap-3">

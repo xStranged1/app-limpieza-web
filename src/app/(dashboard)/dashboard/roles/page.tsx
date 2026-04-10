@@ -4,10 +4,10 @@ import { useAuthStore } from "@/stores/authStore"
 import { listUsersForHouse } from "@/services/users"
 import { setUserRole } from "@/services/houses"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/index"
 import { toast } from "sonner"
 import type { HouseRole } from "@/services/types"
 import { Crown, Shield, User } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
 
 type Row = { id: string; uid: string; displayName: string; role: HouseRole; canControl: boolean }
 
